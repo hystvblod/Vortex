@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#050711">
+  <title>Vortex Runner</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="gameCanvas"></canvas>
+
+    <section id="homeScreen" class="screen active">
+      <header class="topbar">
+        <button class="iconBtn" data-panel="settings" aria-label="Settings">⚙</button>
+        <div class="brand">
+          <div class="logoBubble"></div>
+          <div>
+            <h1 data-i18n="app_title">Vortex Runner</h1>
+            <p data-i18n="app_subtitle">Tunnel spatial mobile</p>
+          </div>
+        </div>
+        <button class="iconBtn" data-panel="shop" aria-label="Shop">🛒</button>
+      </header>
+
+      <main class="homeContent">
+        <div class="hero">
+          <div class="shipPreview"></div>
+          <div>
+            <h2 data-i18n="home_title">Traverse le vortex.</h2>
+            <p data-i18n="home_desc">Glisse ton doigt pour guider ton vaisseau, éviter les obstacles et ramasser l’énergie.</p>
+          </div>
+        </div>
+
+        <button id="playBtn" class="playBtn" data-i18n="play">Jouer</button>
+
+        <div class="menuGrid">
+          <button class="menuCard" id="levelsBtn">
+            <strong data-i18n="levels">Niveaux</strong>
+            <small data-i18n="levels_desc">Choisir un tunnel</small>
+          </button>
+          <button class="menuCard" data-panel="shop">
+            <strong data-i18n="shop">Boutique</strong>
+            <small data-i18n="shop_desc">Skins et bonus</small>
+          </button>
+          <button class="menuCard" data-panel="crosspromo">
+            <strong data-i18n="crosspromo">Apps VBold</strong>
+            <small data-i18n="crosspromo_desc">Découvrir nos jeux</small>
+          </button>
+          <button class="menuCard" data-panel="settings">
+            <strong data-i18n="settings">Paramètres</strong>
+            <small data-i18n="settings_desc">Langue et confort</small>
+          </button>
+        </div>
+      </main>
+    </section>
+
+    <section id="levelsScreen" class="screen">
+      <header class="subbar">
+        <button id="backHomeBtn" class="iconBtn">‹</button>
+        <div>
+          <h2 data-i18n="level_select_title">Choisis ton tunnel</h2>
+          <p data-i18n="level_select_desc">Chaque niveau a sa vitesse et ses dangers.</p>
+        </div>
+      </header>
+      <div id="levelsList" class="levelsList"></div>
+    </section>
+
+    <section id="hud" hidden>
+      <div><span data-i18n="score">Score</span><strong id="scoreValue">0</strong></div>
+      <div><span data-i18n="coins">Pièces</span><strong id="coinsValue">0</strong></div>
+      <div><span data-i18n="speed">Vitesse</span><strong id="speedValue">1.0x</strong></div>
+      <button id="pauseBtn" data-i18n="pause">Pause</button>
+    </section>
+
+    <section id="gameOverScreen" class="modalScreen">
+      <div class="modalCard">
+        <h2 data-i18n="game_over">Vaisseau touché</h2>
+        <p data-i18n="game_over_desc">Repars proprement et vise plus loin.</p>
+
+        <div class="resultGrid">
+          <div><span data-i18n="final_score">Score final</span><strong id="finalScore">0</strong></div>
+          <div><span data-i18n="coins_earned">Pièces gagnées</span><strong id="finalCoins">0</strong></div>
+          <div><span data-i18n="stars">Étoiles</span><strong id="finalStars">0</strong></div>
+        </div>
+
+        <button id="reviveBtn" class="primaryBtn" data-i18n="watch_ad_revive">Regarder une pub pour revivre</button>
+        <button id="doubleCoinsBtn" class="secondaryBtn" data-i18n="watch_ad_double">Regarder une pub pour doubler les pièces</button>
+        <button id="retryBtn" class="primaryBtn" data-i18n="retry">Rejouer</button>
+        <button id="gameHomeBtn" class="ghostBtn" data-i18n="home">Accueil</button>
+      </div>
+    </section>
+
+    <section id="pauseScreen" class="modalScreen">
+      <div class="modalCard">
+        <h2 data-i18n="paused">Pause</h2>
+        <p data-i18n="paused_desc">La course est arrêtée.</p>
+        <button id="resumeBtn" class="primaryBtn" data-i18n="resume">Reprendre</button>
+        <button id="quitBtn" class="secondaryBtn" data-i18n="quit">Quitter</button>
+      </div>
+    </section>
+
+    <aside id="shopPanel" class="panel">
+      <div class="panelCard">
+        <button class="closePanel">×</button>
+        <h2 data-i18n="shop">Boutique</h2>
+        <p data-i18n="shop_full_desc">Boutique prête pour skins, pièces, retours et No Ads.</p>
+
+        <div class="wallet">
+          <div><span data-i18n="coins">Pièces</span><strong id="walletCoins">0</strong></div>
+          <div><span data-i18n="revives">Retours</span><strong id="walletRevives">0</strong></div>
+        </div>
+
+        <button class="shopItem" data-buy="no_ads"><strong data-i18n="product_no_ads">No Ads</strong><small data-i18n="product_no_ads_desc">Retire les pubs interstitielles.</small></button>
+        <button class="shopItem" data-buy="starter_pack"><strong data-i18n="product_starter">Pack départ</strong><small data-i18n="product_starter_desc">1200 pièces et 3 retours.</small></button>
+        <button class="shopItem" data-buy="coin_pack_small"><strong data-i18n="product_coins_small">1200 pièces</strong><small data-i18n="product_coins_small_desc">Pack de pièces.</small></button>
+        <button class="shopItem" data-buy="revive_pack"><strong data-i18n="product_revives">10 retours</strong><small data-i18n="product_revives_desc">Reviens après un crash.</small></button>
+      </div>
+    </aside>
+
+    <aside id="settingsPanel" class="panel">
+      <div class="panelCard">
+        <button class="closePanel">×</button>
+        <h2 data-i18n="settings">Paramètres</h2>
+
+        <label class="settingLine">
+          <span data-i18n="language">Langue</span>
+          <select id="langSelect">
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+
+        <label class="settingLine">
+          <span data-i18n="sound">Sons</span>
+          <input id="soundToggle" type="checkbox" checked>
+        </label>
+      </div>
+    </aside>
+
+    <aside id="crosspromoPanel" class="panel">
+      <div class="panelCard">
+        <button class="closePanel">×</button>
+        <h2 data-i18n="crosspromo">Apps VBold</h2>
+        <p data-i18n="crosspromo_full_desc">Zone prête pour connecter tes autres apps.</p>
+        <button class="promoCard">VBlocks</button>
+        <button class="promoCard">VUniverse</button>
+        <button class="promoCard">VChronicles</button>
+      </div>
+    </aside>
+
+    <div id="toast" hidden></div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/ads.js"></script>
+  <script src="js/purchase.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

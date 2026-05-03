@@ -1,0 +1,28 @@
+﻿ASSETS WEBP A CREER PLUS TARD
+
+Dossier :
+assets/webp/
+
+1. logo.webp
+Prompt :
+logo premium pour jeu mobile sci-fi nommé Vortex Runner, symbole de tunnel spatial en spirale lumineuse, énergie cyan violet et magenta, style jeu mobile haut de gamme, fond transparent, sans texte, sans watermark
+
+2. play.webp
+Prompt :
+gros bouton jouer premium pour jeu mobile sci-fi, forme capsule brillante, icône play au centre, lumière cyan violet magenta, fond transparent, sans texte, sans watermark
+
+3. ship_classic.webp
+Prompt :
+petit vaisseau spatial futuriste pour jeu mobile runner, vue de dessus légèrement 2.5D, moteurs cyan, style sci-fi premium, fond transparent, sans texte, sans watermark
+
+4. obstacle_crystal_red.webp
+Prompt :
+cristal spatial dangereux rouge magenta pour jeu mobile runner, vue 2.5D, forme pointue lisible, fond transparent, sans texte, sans watermark
+
+5. coin_energy.webp
+Prompt :
+pièce d'énergie futuriste pour jeu mobile sci-fi, jeton rond lumineux cyan et or, fond transparent, sans texte, sans watermark
+
+6. revive_token.webp
+Prompt :
+jeton de résurrection premium pour jeu mobile sci-fi, cristal rond lumineux avec symbole de retour, fond transparent, sans texte, sans watermark
